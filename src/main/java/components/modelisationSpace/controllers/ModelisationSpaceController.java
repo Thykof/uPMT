@@ -36,7 +36,7 @@ public class ModelisationSpaceController extends ScrollOnDragPane implements Ini
         AutoSuggestionsTextField autoSuggestionsTextField = new AutoSuggestionsTextField(new SuggestionStrategyCategory());
         //autoSuggestionsTextField.setStrategy(new SuggestionStrategyFolder());
         //autoSuggestionsTextField.setStrategy(new SuggestionStrategyNoSense());
-        //pane.getChildren().add(autoSuggestionsTextField);
+        pane.setTop(autoSuggestionsTextField);
     }
 
 
