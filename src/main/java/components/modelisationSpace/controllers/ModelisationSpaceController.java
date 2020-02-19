@@ -37,7 +37,7 @@ public class ModelisationSpaceController extends ScrollOnDragPane implements Ini
         fake_view.setImage(ResourceLoader.loadImage("fake_modelisation.png"));
         AutoSuggestionsTextField autoSuggestionsTextField = new AutoSuggestionsTextField(new SuggestionStrategyCategory());
         //autoSuggestionsTextField.setStrategy(new SuggestionStrategyFolder());
-        autoSuggestionsTextField.setStrategy(new SuggestionStrategyNoSense());
+        //autoSuggestionsTextField.setStrategy(new SuggestionStrategyNoSense());
         mainAnchorPane.getChildren().add(autoSuggestionsTextField);
     }
 }
