@@ -34,9 +34,10 @@ deploy:
     bucket: $s3bucket
     skip_cleanup: true
     region: eu-west-3
-    branches:
-      except:
-        - master
+    on:
+      branches:
+        except:
+          - master
   #acl: public_read
   #default_text_charset: 'utf-8'  # Default is ''
   # Github release on branch master
@@ -46,7 +47,8 @@ deploy:
      - "build/libs/uPMT.jar"
      - "build/uPMT-osx-x64.zip"
      - "build/uPMT-win-x64.zip"
-    branches:
-      only:
-        - dev
+    on:
+      branches:
+        only:
+          - dev
     skip_cleanup: true
