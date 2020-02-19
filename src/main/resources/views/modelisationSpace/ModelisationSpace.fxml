@@ -5,14 +5,8 @@
 
 <fx:root type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <content>
-      <AnchorPane fx:id="mainAnchorPane">
-         <children>
-            <ImageView fx:id="fake_view" fitHeight="453.0" fitWidth="715.0" layoutX="177.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            </ImageView>
-         </children>
-         <padding>
-            <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
-         </padding>
-      </AnchorPane>
+      <BorderPane fx:id="pane">
+         <!-- Root moment is inserted here -->
+      </BorderPane>
    </content>
 </fx:root>

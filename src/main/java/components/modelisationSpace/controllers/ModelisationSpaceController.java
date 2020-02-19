@@ -3,16 +3,12 @@ package components.modelisationSpace.controllers;
 import components.modelisationSpace.UI.AutoSuggestionsTextField;
 import components.modelisationSpace.moment.controllers.RootMomentController;
 import components.modelisationSpace.moment.model.RootMoment;
-import utils.ResourceLoader;
 import utils.autoSuggestion.strategies.SuggestionStrategyCategory;
-import utils.autoSuggestion.strategies.SuggestionStrategyNoSense;
 import utils.scrollOnDragPane.ScrollOnDragPane;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -21,8 +17,6 @@ import java.util.ResourceBundle;
 
 public class ModelisationSpaceController extends ScrollOnDragPane implements Initializable {
 
-    private  @FXML ImageView fake_view;
-    private @FXML AnchorPane mainAnchorPane;
     private  @FXML BorderPane pane;
 
     public ModelisationSpaceController() {
@@ -39,16 +33,16 @@ public class ModelisationSpaceController extends ScrollOnDragPane implements Ini
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-        fake_view.setImage(ResourceLoader.loadImage("fake_modelisation.png"));
         AutoSuggestionsTextField autoSuggestionsTextField = new AutoSuggestionsTextField(new SuggestionStrategyCategory());
         //autoSuggestionsTextField.setStrategy(new SuggestionStrategyFolder());
         //autoSuggestionsTextField.setStrategy(new SuggestionStrategyNoSense());
-        mainAnchorPane.getChildren().add(autoSuggestionsTextField);
+        //pane.getChildren().add(autoSuggestionsTextField);
     }
 
 
     public void setRootMoment(RootMoment m) {
         RootMomentController controller = new RootMomentController(m);
+
         pane.setCenter(RootMomentController.createRootMoment(controller));
     }
 }
