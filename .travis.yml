@@ -35,9 +35,7 @@ deploy:
     skip_cleanup: true
     region: eu-west-3
     on:
-      branches:
-        except:
-          - master
+      all_branches: true
   #acl: public_read
   #default_text_charset: 'utf-8'  # Default is ''
   # Github release on branch master
@@ -48,7 +46,5 @@ deploy:
      - "build/uPMT-osx-x64.zip"
      - "build/uPMT-win-x64.zip"
     on:
-      branches:
-        only:
-          - dev
+      branch: dev
     skip_cleanup: true
