@@ -26,9 +26,10 @@ before_deploy:
  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
  - git tag $TRAVIS_TAG
  - mkdir artifacts
- - mv build/libs/uPMT.jar artifacts/uPMT.jar
- - mv build/uPMT-osx-x64.zip artifacts/uPMT-osx-x64.zip
- - mv build/uPMT-win-x64.zip artifacts/uPMT-win-x64.zip
+ - mkdir artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')
+ - mv build/libs/uPMT.jar artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT.jar
+ - mv build/uPMT-osx-x64.zip artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT-osx-x64.zip
+ - mv build/uPMT-win-x64.zip artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT-win-x64.zip
 
 deploy:
   # Upload to s3
@@ -47,9 +48,9 @@ deploy:
   - provider: releases
     token: $token
     file:
-     - "artifacts/uPMT.jar"
-     - "artifacts/uPMT-osx-x64.zip"
-     - "artifacts/uPMT-win-x64.zip"
+     - "artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT.jar"
+     - "artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT-osx-x64.zip"
+     - "artifacts/build-uPMT-$(date +'%Y-%m-%d_%H:%M:%S')/uPMT-win-x64.zip"
     on:
-      branch: dev
+      branch: ite3
     skip_cleanup: true
