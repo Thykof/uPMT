@@ -35,7 +35,7 @@ deploy:
     skip_cleanup: true
     region: eu-west-3
     local_dir: build
-    glob: *.zip
+    glob: "*.zip"
     on:
       all_branches: true
   #acl: public_read
