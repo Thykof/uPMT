@@ -25,6 +25,10 @@ before_deploy:
  - git config --local user.email "thykof@protonmail.ch"
  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
  - git tag $TRAVIS_TAG
+ - mkdir artifacts
+ - mv build/libs/uPMT.jar artifacts/uPMT.jar
+ - mv build/uPMT-osx-x64.zip artifacts/uPMT-osx-x64.zip
+ - mv build/uPMT-win-x64.zip artifacts/uPMT-win-x64.zip
 
 deploy:
   # Upload to s3
@@ -32,10 +36,9 @@ deploy:
     access_key_id: $s3id
     secret_access_key: $s3key
     bucket: $s3bucket
-    glob: ".zip"
     skip_cleanup: true
     region: eu-west-3
-    local_dir: build
+    local_dir: artifacts
     on:
       all_branches: true
   #acl: public_read
@@ -44,9 +47,9 @@ deploy:
   - provider: releases
     token: $token
     file:
-     - "build/libs/uPMT.jar"
-     - "build/uPMT-osx-x64.zip"
-     - "build/uPMT-win-x64.zip"
+     - "artifacts/uPMT.jar"
+     - "artifacts/uPMT-osx-x64.zip"
+     - "artifacts/uPMT-win-x64.zip"
     on:
       branch: dev
     skip_cleanup: true
