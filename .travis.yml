@@ -21,12 +21,16 @@ before_cache:
  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
 before_deploy:
-  - export DATE=$(date +'%Y-%m-%d_%H:%M:%S')
-  - mkdir artifacts
-  - mkdir artifacts/build-uPMT-$DATE
-  - mv build/libs/uPMT.jar artifacts/build-uPMT-$DATE/uPMT.jar
-  - mv build/uPMT-osx-x64.zip artifacts/build-uPMT-$DATE/uPMT-osx-x64.zip
-  - mv build/uPMT-win-x64.zip artifacts/build-uPMT-$DATE/uPMT-win-x64.zip
+ - git config --local user.name "Thykof"
+ - git config --local user.email "thykof@protonmail.ch"
+ - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+ - git tag $TRAVIS_TAG
+ - mkdir artifacts
+ - export DATE=$(date +'%Y-%m-%d_%H:%M:%S')
+ - mkdir artifacts/build-uPMT-$DATE
+ - mv build/libs/uPMT.jar artifacts/build-uPMT-$DATE/uPMT.jar
+ - mv build/uPMT-osx-x64.zip artifacts/build-uPMT-$DATE/uPMT-osx-x64.zip
+ - mv build/uPMT-win-x64.zip artifacts/build-uPMT-$DATE/uPMT-win-x64.zip
 
 deploy:
   # Upload to s3
@@ -43,11 +47,6 @@ deploy:
   #default_text_charset: 'utf-8'  # Default is ''
   # Github release on branch master
   - provider: releases
-    script:
-     - git config --local user.name "Thykof"
-     - git config --local user.email "thykof@protonmail.ch"
-     - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-     - git tag $TRAVIS_TAG
     token: $token
     file:
      - "artifacts/build-uPMT-$DATE/uPMT.jar"
