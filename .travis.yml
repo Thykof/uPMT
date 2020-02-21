@@ -44,14 +44,15 @@ deploy:
       branch: ite3
     skip_cleanup: true
       # Upload to s3
-  - provider: s3
-    access_key_id: $s3id
-    secret_access_key: $s3key
-    bucket: $s3bucket
-    skip_cleanup: true
-    region: eu-west-3
-    local_dir: artifacts
-    on:
-      all_branches: true
+
+ # - provider: s3
+ #   access_key_id: $s3id
+ #   secret_access_key: $s3key
+ #   bucket: $s3bucket
+ #   skip_cleanup: true
+ #   region: eu-west-3
+ #   local_dir: artifacts
+ #   on:
+ #     all_branches: true
       #acl: public_read
       #default_text_charset: 'utf-8'  # Default is ''
