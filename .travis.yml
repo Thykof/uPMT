@@ -43,7 +43,7 @@ deploy:
   #default_text_charset: 'utf-8'  # Default is ''
   # Github release on branch master
   - provider: releases
-    script:
+    before_deploy:
      - git config --local user.name "Thykof"
      - git config --local user.email "thykof@protonmail.ch"
      - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
