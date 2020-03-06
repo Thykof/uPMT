@@ -1,6 +1,6 @@
 language: java
 os: osx
-jdk: openjdk11
+jdk: openjdk13
 
 cache:
  directories:
