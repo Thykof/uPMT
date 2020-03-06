@@ -11,6 +11,10 @@ before_install:
  - chmod +x gradlew
  - wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_windows-x64_bin.zip
  - unzip openjdk-11.0.2_windows-x64_bin.zip
+ - ls /Users/
+ - ls /Users/travis/
+ - ls /Users/travis/openjdk11/
+ - ls /Users/travis/openjdk11/jmods
 
 install: skip
 
