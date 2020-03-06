@@ -17,10 +17,10 @@ before_install:
 install: skip
 
 script:
- - ./gradlew -b build-travis.gradle build --warning-mode all --debug
- - ./gradlew -b build-travis.gradle jar --warning-mode all --debug
- - ./gradlew -b build-travis.gradle jre --warning-mode all --debug
- - ./gradlew -b build-travis.gradle runtimeZip --warning-mode all --debug
+ - ./gradlew -b build-travis.gradle build --warning-mode all --info
+ - ./gradlew -b build-travis.gradle jar --warning-mode all --info
+ - ./gradlew -b build-travis.gradle jre --warning-mode all --info
+ - ./gradlew -b build-travis.gradle runtimeZip --warning-mode all --info
 
 before_cache:
  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
