@@ -13,8 +13,6 @@ before_install:
  - unzip openjdk-11.0.2_windows-x64_bin.zip
  - ls /Users/
  - ls /Users/travis/
- - ls /Users/travis/openjdk11/
- - ls /Users/travis/openjdk11/jmods
 
 install: skip
 
