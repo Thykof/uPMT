@@ -16,7 +16,7 @@ before_install:
 
 install: skip
 
-script: ./gradlew -b build-travis.gradle runtimeZip --warning-mode all
+script: ./gradlew -b build-travis.gradle runtimeZip --warning-mode all --scan
 
 before_cache:
  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
