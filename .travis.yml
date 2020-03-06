@@ -9,14 +9,9 @@ cache:
 
 before_install:
  - chmod +x gradlew
- - wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_windows-x64_bin.zip
  - wget https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_windows-x64_bin.zip
- - unzip openjdk-11.0.2_windows-x64_bin.zip
  - unzip openjdk-13.0.2_windows-x64_bin.zip
- - ls /Users/
- - ls /Users/travis/
- - ls .
- - ls jdk-13.0.2
+
 
 install: skip
 
