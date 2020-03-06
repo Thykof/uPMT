@@ -16,7 +16,7 @@ before_install:
  - ls /Users/
  - ls /Users/travis/
  - ls .
- - ls jdk-13.0.1
+ - ls jdk-13.0.2
 
 install: skip
 
