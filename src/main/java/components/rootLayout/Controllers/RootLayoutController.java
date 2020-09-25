@@ -43,6 +43,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.*;
 import utils.DialogState;
 import utils.OS;
+import utils.ZoomMenuItem;
 
 import java.awt.im.InputContext;
 import java.io.IOException;
@@ -62,6 +63,8 @@ public class RootLayoutController implements Initializable {
 	public @FXML MenuItem saveProjectAs;
 	public @FXML MenuItem exportProject;
 	public @FXML MenuItem newInterview;
+
+	private @FXML Menu viewMenu;
 
 	public @FXML MenuItem undo;
 	public @FXML MenuItem redo;
@@ -128,12 +131,12 @@ public class RootLayoutController implements Initializable {
 		//TODO
 		appCommandFactory.exportToCSV().execute();
 	}
-
+	
 	@FXML
 	public void undo(){
 		HistoryManager.goBack();
 	}
-
+	
 	@FXML
 	public void redo(){
 		HistoryManager.goForward();
@@ -294,36 +297,29 @@ public class RootLayoutController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		final KeyCodeCombination keyCombREDO= new KeyCodeCombination(KeyCode.Y, KeyCombination.SHORTCUT_DOWN);
+		final KeyCodeCombination keyCombREDO = new KeyCodeCombination(KeyCode.Y, KeyCombination.SHORTCUT_DOWN);
 		final KeyCodeCombination keyCombSAVE = new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
 		final KeyCodeCombination keyCombNEW = new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN);
-		InputContext context = InputContext.getInstance(); 
+		final KeyCodeCombination keyCombUNDO = new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN);
+		InputContext context = InputContext.getInstance();
 		String loc = context.getLocale().toString();
 		System.out.println(loc);  
 		// javafx keyboard layout bug management 
 		if (OS.current == OS.mac) {
-			if (loc.equals("fr")){
+			if (loc.equals("fr")) {
 				Locale.setDefault(Locale.FRANCE);
-			    KeyCodeCombination keyCombUNDO=new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN);
-				undo.setAccelerator(keyCombUNDO);
-				redo.setAccelerator(keyCombREDO);
-				saveProject.setAccelerator(keyCombSAVE);
-				newInterview.setAccelerator(keyCombNEW);
+
 			} else {
 				Locale.setDefault(Locale.US);
-				KeyCodeCombination keyCombUNDO=new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN);
-				undo.setAccelerator(keyCombUNDO);
-				redo.setAccelerator(keyCombREDO);
-				saveProject.setAccelerator(keyCombSAVE);
-				newInterview.setAccelerator(keyCombNEW);
 			}
-		} else {
-		    KeyCodeCombination keyCombUNDO=new KeyCodeCombination(KeyCode.W, KeyCombination.SHORTCUT_DOWN);
-			undo.setAccelerator(keyCombUNDO);
-			redo.setAccelerator(keyCombREDO);
-			saveProject.setAccelerator(keyCombSAVE);
-			newInterview.setAccelerator(keyCombNEW);
 		}
+
+		undo.setAccelerator(keyCombUNDO);
+		redo.setAccelerator(keyCombREDO);
+		saveProject.setAccelerator(keyCombSAVE);
+		newInterview.setAccelerator(keyCombNEW);
+
+		viewMenu.getItems().add(new ZoomMenuItem());
 
 		scrollOnReveal.setSelected(AppSettings.autoScrollWhenReveal.get());
 		scrollOnReveal.setOnAction((event -> {
@@ -345,7 +341,7 @@ public class RootLayoutController implements Initializable {
 			for(int i = 0; i < Math.min(recentsProjects.length, 5); i++){
 				String text = recentsProjects[i];
 				MenuItem item = new MenuItem(text);
-				item.setOnAction(e -> { appCommandFactory.openRecentProject(text).execute(); });
+				item.setOnAction(e -> appCommandFactory.openRecentProject(text).execute());
 				openRecentProject.getItems().add(item);
 			}
 		});
